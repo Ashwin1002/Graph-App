@@ -13,8 +13,14 @@ import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 import 'package:internet_connection_checker/internet_connection_checker.dart'
     as _i4;
-import 'package:stock_market/core/di/service_module.dart' as _i6;
+import 'package:stock_market/core/di/service_module.dart' as _i9;
 import 'package:stock_market/core/router/app_router.dart' as _i5;
+import 'package:stock_market/src/home/data/repository/home_remote_repository.dart'
+    as _i6;
+import 'package:stock_market/src/home/domain/repositories/home_remote_repositoy_impl.dart'
+    as _i7;
+import 'package:stock_market/src/home/domain/usecases/get_stocks_usecase.dart'
+    as _i8;
 
 extension GetItInjectableX on _i1.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -32,8 +38,11 @@ extension GetItInjectableX on _i1.GetIt {
     gh.singleton<_i4.InternetConnectionChecker>(
         () => serviceModule.connectivity);
     gh.singleton<_i5.AppRouter>(() => _i5.AppRouter());
+    gh.factory<_i6.HomeRemoteRepository>(() => _i7.HomeRemoteRepositoryImpl());
+    gh.factory<_i8.GetStocksUsecase>(() =>
+        _i8.GetStocksUsecase(remoteRepository: gh<_i6.HomeRemoteRepository>()));
     return this;
   }
 }
 
-class _$ServiceModule extends _i6.ServiceModule {}
+class _$ServiceModule extends _i9.ServiceModule {}

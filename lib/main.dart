@@ -3,12 +3,20 @@ import 'package:flutter/material.dart';
 import 'package:stock_market/core/di/injection.dart';
 import 'package:stock_market/core/router/app_router.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  configureInjection();
+  await Future.wait(
+    [
+      /// Dependency Injection initialization
+      configureInjection(),
+    ],
+  );
+
   runApp(const MyApp());
 }
+
+final _appRouter = sl<AppRouter>();
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -21,8 +29,8 @@ class MyApp extends StatelessWidget {
       title: 'Stock Graph App',
       debugShowCheckedModeBanner: false,
 
-      routeInformationParser: sl<AppRouter>().defaultRouteParser(),
-      routerDelegate: AutoRouterDelegate(sl<AppRouter>()),
+      routeInformationParser: _appRouter.defaultRouteParser(),
+      routerDelegate: AutoRouterDelegate(_appRouter),
     );
   }
 }
