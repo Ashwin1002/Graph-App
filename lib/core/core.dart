@@ -1,6 +1,8 @@
 export 'constants/constants.dart';
 export 'di/di.dart';
 export 'enums/enums.dart';
+export 'errors/errors.dart';
+export 'network/network.dart';
 export 'router/router.dart';
 export 'theme/theme.dart';
 export 'usecases/usecases.dart';

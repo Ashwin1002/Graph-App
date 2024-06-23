@@ -8,20 +8,16 @@ part of 'stock_model.dart';
 
 _$StockModelImpl _$$StockModelImplFromJson(Map<String, dynamic> json) =>
     _$StockModelImpl(
-      open: (json['open'] as num?)?.toDouble() ?? 0,
-      high: (json['high'] as num?)?.toDouble() ?? 0,
-      low: (json['low'] as num?)?.toDouble() ?? 0,
-      close: (json['close'] as num?)?.toDouble() ?? 0,
-      volume: (json['volume'] as num?)?.toInt() ?? 0,
+      index: (json['index'] as num?)?.toDouble() ?? 0,
+      change: (json['change'] as num?)?.toDouble() ?? 0,
+      percentChange: (json['percent_change'] as num?)?.toDouble() ?? 0,
       date: const DateTimeJsonConverter().fromJson(json['date'] as String),
     );
 
 Map<String, dynamic> _$$StockModelImplToJson(_$StockModelImpl instance) =>
     <String, dynamic>{
-      'open': instance.open,
-      'high': instance.high,
-      'low': instance.low,
-      'close': instance.close,
-      'volume': instance.volume,
+      'index': instance.index,
+      'change': instance.change,
+      'percent_change': instance.percentChange,
       'date': const DateTimeJsonConverter().toJson(instance.date),
     };

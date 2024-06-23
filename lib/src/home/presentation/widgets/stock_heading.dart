@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:stock_market/core/core.dart';
+import 'package:stock_market/src/home/data/model/market/market_model.dart';
 
 class StockHeading extends StatelessWidget {
-  const StockHeading({super.key});
+  const StockHeading({
+    super.key,
+    required this.market,
+  });
+
+  final MarketModel market;
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +21,7 @@ class StockHeading extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                '1,966.23',
+                market.todayNepse,
                 style: context.textStyle.headlineLarge?.copyWith(
                   fontWeight: FontWeight.bold,
                   letterSpacing: 1,
@@ -24,23 +30,23 @@ class StockHeading extends StatelessWidget {
               Row(
                 children: [
                   Text(
-                    '2.1 Ar',
+                    '${market.percentChange} Ar',
                     style: context.textStyle.bodyLarge?.copyWith(
                       fontWeight: FontWeight.bold,
-                      letterSpacing: 1.48,
                     ),
                   ),
-                  10.h.horizontalSpace,
-                  Icon(
-                    Icons.line_axis,
-                    color: context.theme.positive!,
-                  ),
                   8.h.horizontalSpace,
+                  Image.asset(
+                    AppImages.growUp,
+                    width: 24.adaptSize,
+                    height: 24.adaptSize,
+                    color: context.theme.positive,
+                  ),
+                  6.h.horizontalSpace,
                   Text(
-                    '5.63 (0.29%)',
+                    '${market.change} (0.29%)',
                     style: context.textStyle.bodyLarge?.copyWith(
                       fontWeight: FontWeight.bold,
-                      letterSpacing: 1,
                       color: context.theme.positive,
                     ),
                   ),

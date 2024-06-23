@@ -20,11 +20,10 @@ StockModel _$StockModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$StockModel {
-  double get open => throw _privateConstructorUsedError;
-  double get high => throw _privateConstructorUsedError;
-  double get low => throw _privateConstructorUsedError;
-  double get close => throw _privateConstructorUsedError;
-  int get volume => throw _privateConstructorUsedError;
+  double get index => throw _privateConstructorUsedError;
+  double get change => throw _privateConstructorUsedError;
+  @JsonKey(name: 'percent_change')
+  double get percentChange => throw _privateConstructorUsedError;
   @DateTimeJsonConverter()
   DateTime get date => throw _privateConstructorUsedError;
 
@@ -41,11 +40,9 @@ abstract class $StockModelCopyWith<$Res> {
       _$StockModelCopyWithImpl<$Res, StockModel>;
   @useResult
   $Res call(
-      {double open,
-      double high,
-      double low,
-      double close,
-      int volume,
+      {double index,
+      double change,
+      @JsonKey(name: 'percent_change') double percentChange,
       @DateTimeJsonConverter() DateTime date});
 }
 
@@ -62,34 +59,24 @@ class _$StockModelCopyWithImpl<$Res, $Val extends StockModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? open = null,
-    Object? high = null,
-    Object? low = null,
-    Object? close = null,
-    Object? volume = null,
+    Object? index = null,
+    Object? change = null,
+    Object? percentChange = null,
     Object? date = null,
   }) {
     return _then(_value.copyWith(
-      open: null == open
-          ? _value.open
-          : open // ignore: cast_nullable_to_non_nullable
+      index: null == index
+          ? _value.index
+          : index // ignore: cast_nullable_to_non_nullable
               as double,
-      high: null == high
-          ? _value.high
-          : high // ignore: cast_nullable_to_non_nullable
+      change: null == change
+          ? _value.change
+          : change // ignore: cast_nullable_to_non_nullable
               as double,
-      low: null == low
-          ? _value.low
-          : low // ignore: cast_nullable_to_non_nullable
+      percentChange: null == percentChange
+          ? _value.percentChange
+          : percentChange // ignore: cast_nullable_to_non_nullable
               as double,
-      close: null == close
-          ? _value.close
-          : close // ignore: cast_nullable_to_non_nullable
-              as double,
-      volume: null == volume
-          ? _value.volume
-          : volume // ignore: cast_nullable_to_non_nullable
-              as int,
       date: null == date
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
@@ -107,11 +94,9 @@ abstract class _$$StockModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {double open,
-      double high,
-      double low,
-      double close,
-      int volume,
+      {double index,
+      double change,
+      @JsonKey(name: 'percent_change') double percentChange,
       @DateTimeJsonConverter() DateTime date});
 }
 
@@ -126,34 +111,24 @@ class __$$StockModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? open = null,
-    Object? high = null,
-    Object? low = null,
-    Object? close = null,
-    Object? volume = null,
+    Object? index = null,
+    Object? change = null,
+    Object? percentChange = null,
     Object? date = null,
   }) {
     return _then(_$StockModelImpl(
-      open: null == open
-          ? _value.open
-          : open // ignore: cast_nullable_to_non_nullable
+      index: null == index
+          ? _value.index
+          : index // ignore: cast_nullable_to_non_nullable
               as double,
-      high: null == high
-          ? _value.high
-          : high // ignore: cast_nullable_to_non_nullable
+      change: null == change
+          ? _value.change
+          : change // ignore: cast_nullable_to_non_nullable
               as double,
-      low: null == low
-          ? _value.low
-          : low // ignore: cast_nullable_to_non_nullable
+      percentChange: null == percentChange
+          ? _value.percentChange
+          : percentChange // ignore: cast_nullable_to_non_nullable
               as double,
-      close: null == close
-          ? _value.close
-          : close // ignore: cast_nullable_to_non_nullable
-              as double,
-      volume: null == volume
-          ? _value.volume
-          : volume // ignore: cast_nullable_to_non_nullable
-              as int,
       date: null == date
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
@@ -166,11 +141,9 @@ class __$$StockModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$StockModelImpl extends _StockModel {
   const _$StockModelImpl(
-      {this.open = 0,
-      this.high = 0,
-      this.low = 0,
-      this.close = 0,
-      this.volume = 0,
+      {this.index = 0,
+      this.change = 0,
+      @JsonKey(name: 'percent_change') this.percentChange = 0,
       @DateTimeJsonConverter() required this.date})
       : super._();
 
@@ -179,26 +152,20 @@ class _$StockModelImpl extends _StockModel {
 
   @override
   @JsonKey()
-  final double open;
+  final double index;
   @override
   @JsonKey()
-  final double high;
+  final double change;
   @override
-  @JsonKey()
-  final double low;
-  @override
-  @JsonKey()
-  final double close;
-  @override
-  @JsonKey()
-  final int volume;
+  @JsonKey(name: 'percent_change')
+  final double percentChange;
   @override
   @DateTimeJsonConverter()
   final DateTime date;
 
   @override
   String toString() {
-    return 'StockModel(open: $open, high: $high, low: $low, close: $close, volume: $volume, date: $date)';
+    return 'StockModel(index: $index, change: $change, percentChange: $percentChange, date: $date)';
   }
 
   @override
@@ -206,18 +173,17 @@ class _$StockModelImpl extends _StockModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$StockModelImpl &&
-            (identical(other.open, open) || other.open == open) &&
-            (identical(other.high, high) || other.high == high) &&
-            (identical(other.low, low) || other.low == low) &&
-            (identical(other.close, close) || other.close == close) &&
-            (identical(other.volume, volume) || other.volume == volume) &&
+            (identical(other.index, index) || other.index == index) &&
+            (identical(other.change, change) || other.change == change) &&
+            (identical(other.percentChange, percentChange) ||
+                other.percentChange == percentChange) &&
             (identical(other.date, date) || other.date == date));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, open, high, low, close, volume, date);
+      Object.hash(runtimeType, index, change, percentChange, date);
 
   @JsonKey(ignore: true)
   @override
@@ -235,11 +201,9 @@ class _$StockModelImpl extends _StockModel {
 
 abstract class _StockModel extends StockModel {
   const factory _StockModel(
-          {final double open,
-          final double high,
-          final double low,
-          final double close,
-          final int volume,
+          {final double index,
+          final double change,
+          @JsonKey(name: 'percent_change') final double percentChange,
           @DateTimeJsonConverter() required final DateTime date}) =
       _$StockModelImpl;
   const _StockModel._() : super._();
@@ -248,15 +212,12 @@ abstract class _StockModel extends StockModel {
       _$StockModelImpl.fromJson;
 
   @override
-  double get open;
+  double get index;
   @override
-  double get high;
+  double get change;
   @override
-  double get low;
-  @override
-  double get close;
-  @override
-  int get volume;
+  @JsonKey(name: 'percent_change')
+  double get percentChange;
   @override
   @DateTimeJsonConverter()
   DateTime get date;

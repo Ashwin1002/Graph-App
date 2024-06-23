@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:stock_market/core/core.dart';
+import 'package:stock_market/src/home/data/model/market/market_model.dart';
 import 'package:stock_market/src/home/data/model/stock/stock_model.dart';
 import 'package:stock_market/src/home/domain/usecases/get_stocks_usecase.dart';
 
@@ -39,36 +40,23 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       (r) => emit(
         state.copyWith(
           status: LoadingStatus.success,
-          stocks: List<StockModel>.from(state.stocks)..addAll(r),
-          filteredStocks: List<StockModel>.from(state.stocks)..addAll(r),
+          marketModel: r.data.marketSummary,
+          dayStocks: List<StockModel>.from(state.dayStocks)
+            ..addAll(r.data.dayData),
+          minuteStocks: List<StockModel>.from(state.minuteStocks)
+            ..addAll(r.data.minuteData),
+          hourStocks: List<StockModel>.from(state.hourStocks)
+            ..addAll(r.data.hourData),
+          monthStocks: List<StockModel>.from(state.monthStocks)
+            ..addAll(r.data.monthData),
+          yearlyStocks: List<StockModel>.from(state.yearlyStocks)
+            ..addAll(r.data.yearlyData),
         ),
       ),
     );
   }
 
   void _setActiveDayType(SetActiveDayType event, Emitter<HomeState> emit) {
-    var startDate = event.dayType.getDays()?.start;
-    var endDate = event.dayType.getDays()?.end;
-
-    print('start date => $startDate');
-
-    print('end date => $endDate');
-
-    emit(
-      state.copyWith(
-        activeDayType: event.dayType,
-        filteredStocks: event.dayType.isMax
-            ? state.stocks
-            : List<StockModel>.from(state.stocks)
-                .where(
-                  (element) =>
-                      element.date.isAfter(startDate!) &&
-                      element.date.isBefore(endDate!),
-                )
-                .toList(),
-      ),
-    );
-
-    print('filtered stocks lenght => ${state.filteredStocks.length}');
+    emit(state.copyWith(activeStockType: event.type));
   }
 }

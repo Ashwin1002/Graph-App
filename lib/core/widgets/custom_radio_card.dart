@@ -10,7 +10,7 @@ class CustomRadioCard extends StatelessWidget {
   });
 
   final bool isActive;
-  final DayType dayType;
+  final StockType dayType;
   final VoidCallback? onTap;
 
   @override

@@ -51,10 +51,14 @@ class _HomeScreenViewState extends State<HomeScreenView> {
 
   Widget _buildBody() {
     return BlocBuilder<HomeBloc, HomeState>(
-      buildWhen: (previous, current) =>
-          previous.status != current.status ||
-          previous.stocks != current.stocks ||
-          previous.filteredStocks != current.filteredStocks,
+      buildWhen: (p, c) =>
+          p.status != c.status ||
+          p.activeStockType != c.activeStockType ||
+          p.dayStocks != c.dayStocks ||
+          p.monthStocks != c.monthStocks ||
+          p.hourStocks != c.hourStocks ||
+          p.minuteStocks != c.minuteStocks ||
+          p.yearlyStocks != c.yearlyStocks,
       builder: (context, state) {
         return state.status.when(
           loading: () => const CustomLoadingWidget(),
@@ -66,16 +70,26 @@ class _HomeScreenViewState extends State<HomeScreenView> {
   }
 
   Widget _buildStockChartView(HomeState state) {
+    var stocks = state.activeStockType.isMinutes
+        ? state.minuteStocks
+        : state.activeStockType.isHours
+            ? state.hourStocks
+            : state.activeStockType.isdays
+                ? state.dayStocks
+                : state.activeStockType.isMonths
+                    ? state.monthStocks
+                    : state.yearlyStocks;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const StockHeading(),
+        StockHeading(market: state.marketModel),
         StockLineChart(
-          stocks: state.filteredStocks,
+          stocks: stocks,
         ),
         BlocBuilder<HomeBloc, HomeState>(
           buildWhen: (previous, current) =>
-              previous.activeDayType != current.activeDayType,
+              previous.activeStockType != current.activeStockType,
           builder: (context, state) {
             return Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.h),
@@ -83,12 +97,12 @@ class _HomeScreenViewState extends State<HomeScreenView> {
                 runSpacing: 8.v,
                 spacing: 8.h,
                 children: List.generate(
-                  DayType.values.length,
+                  StockType.values.length,
                   (index) {
-                    var dayType = DayType.values[index];
+                    var dayType = StockType.values[index];
                     return CustomRadioCard(
                       dayType: dayType,
-                      isActive: state.activeDayType == dayType,
+                      isActive: state.activeStockType == dayType,
                       onTap: () {
                         context.read<HomeBloc>().add(SetActiveDayType(dayType));
                       },

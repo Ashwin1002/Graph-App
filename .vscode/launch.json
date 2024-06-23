@@ -1,0 +1,28 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "Stock Market (Debug)",
+        "request": "launch",
+        "type": "dart",
+        "program": "lib/main.dart",
+        "args": ["--dart-define-from-file=env.json"]
+      },
+      {
+        "name": "Stock Market (Release)",
+        "request": "launch",
+        "type": "dart",
+        "program": "lib/main.dart",
+        "args": ["--release", "--dart-define-from-file=env.json"]
+      },
+      {
+        "name": "Stock Market (Profile)",
+        "request": "launch",
+        "type": "dart",
+        "program": "lib/main.dart",
+        "args": ["--profile", "--dart-define-from-file=env.json"]
+      },
+    ],
+    "compounds": []
+  }
+  

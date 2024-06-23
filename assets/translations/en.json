@@ -1,0 +1,18 @@
+{
+    "app_name": "Stock Market",
+    "en": "English",
+    "request_cancelled": "Request to API server was cancelled",
+    "connection_timeout": "Connection timeout with API server",
+    "receive_timeout": "Receive timeout in connection with API server",
+    "page_not_found": "Page not found",
+    "too_many_request": "Too Many Request! Please try one at a time",
+    "internal_server_error": "Internal Server Error",
+    "server_updating": "Server is currently updating. Thank you for your patience",
+    "unreachable_server": "Sever is unreachable, Please try again later",
+    "send_timeout": "Send timeout in connection with API server",
+    "bad_certificate": "Bad Certificate",
+    "unknown_error": "Unknown Error Occurred",
+    "already_present": "is already present",
+    "error_decoding_message": "Error while decoding error message: {}",
+    "unauthorized_access": "User is not Authorized"
+}

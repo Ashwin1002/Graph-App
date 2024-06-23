@@ -20,18 +20,47 @@ class StockLineChart extends StatelessWidget {
           SizedBox(
             height: 300.0,
             child: SfCartesianChart(
+              onZooming: (zoomingArgs) {
+                print(zoomingArgs);
+              },
               primaryXAxis: const DateTimeAxis(
                 isVisible: false,
               ),
               primaryYAxis: const NumericAxis(
                 isVisible: false,
               ),
+              onTrackballPositionChanging: (trackballArgs) {
+                // print('${trackballArgs.chartPointInfo.chartPoint}');
+              },
+              trackballBehavior: TrackballBehavior(
+                  enable: true,
+                  activationMode: ActivationMode.singleTap,
+                  tooltipDisplayMode: TrackballDisplayMode.groupAllPoints,
+                  tooltipAlignment: ChartAlignment.near,
+                  tooltipSettings: InteractiveTooltip(
+                    canShowMarker: false,
+                    textStyle: context.textStyle.bodyMedium?.copyWith(
+                      color: context.theme.backgroundSecondary,
+                    ),
+                  )
+                  // builder: (context, trackballDetails) {
+                  //   return Container(
+                  //     width: 70,
+                  //     decoration: const BoxDecoration(
+                  //       color: Color.fromRGBO(66, 244, 164, 1),
+                  //     ),
+                  //     child: Text(
+                  //       '${trackballDetails.groupingModeInfo?.points.first.x}',
+                  //     ),
+                  //   );
+                  // },
+                  ),
               series: <CartesianSeries>[
                 // Renders line chart
                 LineSeries<StockModel, DateTime>(
                   dataSource: stocks,
                   xValueMapper: (StockModel data, _) => data.date,
-                  yValueMapper: (StockModel data, _) => data.close,
+                  yValueMapper: (StockModel data, _) => data.index,
                   color: context.theme.positive,
                 ),
               ],

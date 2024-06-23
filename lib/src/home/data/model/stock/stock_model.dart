@@ -8,11 +8,9 @@ part 'stock_model.g.dart';
 class StockModel with _$StockModel {
   const StockModel._();
   const factory StockModel({
-    @Default(0) double open,
-    @Default(0) double high,
-    @Default(0) double low,
-    @Default(0) double close,
-    @Default(0) int volume,
+    @Default(0) double index,
+    @Default(0) double change,
+    @Default(0) @JsonKey(name: 'percent_change') double percentChange,
     @DateTimeJsonConverter() required DateTime date,
   }) = _StockModel;
 
@@ -20,4 +18,6 @@ class StockModel with _$StockModel {
       _$StockModelFromJson(json);
 
   bool get isEmpty => this == StockModel(date: DateTime.now());
+
+  static const StockModel empty = StockModel._();
 }
