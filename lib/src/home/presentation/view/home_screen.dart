@@ -77,22 +77,25 @@ class _HomeScreenViewState extends State<HomeScreenView> {
   }
 
   Widget _buildBody() {
-    return BlocBuilder<HomeBloc, HomeState>(
-      buildWhen: (p, c) =>
-          p.status != c.status ||
-          p.activeStockType != c.activeStockType ||
-          p.dayStocks != c.dayStocks ||
-          p.monthStocks != c.monthStocks ||
-          p.hourStocks != c.hourStocks ||
-          p.minuteStocks != c.minuteStocks ||
-          p.yearlyStocks != c.yearlyStocks,
-      builder: (context, state) {
-        return state.status.when(
-          loading: () => const CustomLoadingWidget(),
-          success: () => _buildStockChartView(state),
-          failure: () => CustomErrorWidget(message: state.message),
-        );
-      },
+    return RefreshIndicator.adaptive(
+      onRefresh: () async => context.read<HomeBloc>().add(const FetchStocks()),
+      child: BlocBuilder<HomeBloc, HomeState>(
+        buildWhen: (p, c) =>
+            p.status != c.status ||
+            p.activeStockType != c.activeStockType ||
+            p.dayStocks != c.dayStocks ||
+            p.monthStocks != c.monthStocks ||
+            p.hourStocks != c.hourStocks ||
+            p.minuteStocks != c.minuteStocks ||
+            p.yearlyStocks != c.yearlyStocks,
+        builder: (context, state) {
+          return state.status.when(
+            loading: () => const CustomLoadingWidget(),
+            success: () => _buildStockChartView(state),
+            failure: () => CustomErrorWidget(message: state.message),
+          );
+        },
+      ),
     );
   }
 

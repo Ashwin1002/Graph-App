@@ -41,16 +41,10 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         state.copyWith(
           status: LoadingStatus.success,
           marketModel: r.data.marketSummary,
-          dayStocks: List<StockModel>.from(state.dayStocks)
-            ..addAll(r.data.dayData),
-          minuteStocks: List<StockModel>.from(state.minuteStocks)
-            ..addAll(r.data.minuteData),
-          hourStocks: List<StockModel>.from(state.hourStocks)
-            ..addAll(r.data.hourData),
-          monthStocks: List<StockModel>.from(state.monthStocks)
-            ..addAll(r.data.monthData),
-          yearlyStocks: List<StockModel>.from(state.yearlyStocks)
-            ..addAll(r.data.yearlyData),
+          dayStocks: r.data.dayData,
+          minuteStocks: r.data.minuteData,
+          hourStocks: r.data.monthData,
+          yearlyStocks: r.data.yearlyData,
         ),
       ),
     );
