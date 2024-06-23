@@ -43,8 +43,8 @@ class StockHeading extends StatelessWidget {
                   8.h.horizontalSpace,
                   Image.asset(
                     AppImages.growUp,
-                    width: 24.adaptSize,
-                    height: 24.adaptSize,
+                    width: 24,
+                    height: 24,
                     color: context.theme.positive,
                   ),
                   6.h.horizontalSpace,
@@ -59,7 +59,7 @@ class StockHeading extends StatelessWidget {
               ),
               5.v.verticalSpace,
               Text(
-                'As of May 09, 2024 03:00 PM',
+                '${'as_of'.localize()} May 09, 2024 03:00 PM',
                 style: context.textStyle.labelMedium?.copyWith(
                   color: context.theme.contentSecondary,
                   fontWeight: FontWeight.bold,
@@ -83,7 +83,7 @@ class StockHeading extends StatelessWidget {
                 child: Row(
                   children: [
                     Text(
-                      'NEPSE',
+                      'nepse'.localize(),
                       style: context.textStyle.titleMedium?.copyWith(
                         fontWeight: FontWeight.bold,
                         color: context.theme.contentPrimary,
@@ -97,7 +97,7 @@ class StockHeading extends StatelessWidget {
                   ],
                 ),
               ),
-              5.v.verticalSpace,
+              10.v.verticalSpace,
               Row(
                 children: [
                   Container(
@@ -117,10 +117,10 @@ class StockHeading extends StatelessWidget {
                         letterSpacing: .48,
                         color: context.theme.contentPrimary,
                       ),
-                      text: 'Market ',
+                      text: '${'market'.localize()} ',
                       children: [
                         TextSpan(
-                          text: 'OPEN',
+                          text: 'open'.localize(),
                           style: context.textStyle.labelMedium?.copyWith(
                             fontWeight: FontWeight.bold,
                             color: context.theme.positive,
@@ -133,7 +133,7 @@ class StockHeading extends StatelessWidget {
               ),
               5.v.verticalSpace,
               Text(
-                'Closes in 3 hrs 9 min',
+                '${'closes_in'.localize()} 3 hrs 9 min',
                 style: context.textStyle.labelMedium?.copyWith(
                   color: context.theme.contentSecondary,
                   fontWeight: FontWeight.bold,

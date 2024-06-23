@@ -22,7 +22,7 @@ class StockLineChart extends StatelessWidget {
         alignment: Alignment.center,
         children: [
           SizedBox(
-            height: context.deviceHeight / 2.5,
+            height: context.isLandscape ? 120.h : context.deviceHeight / 2.5,
             child: SfCartesianChart(
               plotAreaBackgroundColor: AppColors.transparent,
               zoomPanBehavior: ZoomPanBehavior(

@@ -24,7 +24,7 @@ class BottomSheetHeader extends StatelessWidget {
               bottom: 16.v,
             ),
             child: Text(
-              title.localize(context: context),
+              title,
               style: context.textStyle.bodyLarge?.copyWith(
                 fontWeight: FontWeight.w500,
                 color: context.theme.contentPrimary,

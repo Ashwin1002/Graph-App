@@ -15,5 +15,12 @@
     "already_present": "is already present",
     "error_decoding_message": "Error while decoding error message: {}",
     "unauthorized_access": "User is not Authorized",
-    "change_appearance": "Change Appearance"
+    "change_appearance": "Change Appearance",
+    "change_theme": "Change Theme",
+    "home": "Home",
+    "as_of": "As of",
+    "nepse": "NEPSE",
+    "market": "Market",
+    "open": "OPEN",
+    "closes_in": "Closes in"
 }

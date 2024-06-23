@@ -23,7 +23,7 @@ class CustomRadioCard extends StatelessWidget {
           context,
           color: !isActive
               ? AppColors.transparent
-              : context.theme.backgroundSuccess,
+              : context.theme.positive?.withOpacity(.5),
           borderRadius: BorderRadius.all(AppScales.extraLargeRadius),
         ),
         child: Text(
