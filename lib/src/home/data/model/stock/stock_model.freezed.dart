@@ -20,7 +20,11 @@ StockModel _$StockModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$StockModel {
-  double get point => throw _privateConstructorUsedError;
+  double get open => throw _privateConstructorUsedError;
+  double get high => throw _privateConstructorUsedError;
+  double get low => throw _privateConstructorUsedError;
+  double get close => throw _privateConstructorUsedError;
+  int get volume => throw _privateConstructorUsedError;
   @DateTimeJsonConverter()
   DateTime get date => throw _privateConstructorUsedError;
 
@@ -36,7 +40,13 @@ abstract class $StockModelCopyWith<$Res> {
           StockModel value, $Res Function(StockModel) then) =
       _$StockModelCopyWithImpl<$Res, StockModel>;
   @useResult
-  $Res call({double point, @DateTimeJsonConverter() DateTime date});
+  $Res call(
+      {double open,
+      double high,
+      double low,
+      double close,
+      int volume,
+      @DateTimeJsonConverter() DateTime date});
 }
 
 /// @nodoc
@@ -52,14 +62,34 @@ class _$StockModelCopyWithImpl<$Res, $Val extends StockModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? point = null,
+    Object? open = null,
+    Object? high = null,
+    Object? low = null,
+    Object? close = null,
+    Object? volume = null,
     Object? date = null,
   }) {
     return _then(_value.copyWith(
-      point: null == point
-          ? _value.point
-          : point // ignore: cast_nullable_to_non_nullable
+      open: null == open
+          ? _value.open
+          : open // ignore: cast_nullable_to_non_nullable
               as double,
+      high: null == high
+          ? _value.high
+          : high // ignore: cast_nullable_to_non_nullable
+              as double,
+      low: null == low
+          ? _value.low
+          : low // ignore: cast_nullable_to_non_nullable
+              as double,
+      close: null == close
+          ? _value.close
+          : close // ignore: cast_nullable_to_non_nullable
+              as double,
+      volume: null == volume
+          ? _value.volume
+          : volume // ignore: cast_nullable_to_non_nullable
+              as int,
       date: null == date
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
@@ -76,7 +106,13 @@ abstract class _$$StockModelImplCopyWith<$Res>
       __$$StockModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({double point, @DateTimeJsonConverter() DateTime date});
+  $Res call(
+      {double open,
+      double high,
+      double low,
+      double close,
+      int volume,
+      @DateTimeJsonConverter() DateTime date});
 }
 
 /// @nodoc
@@ -90,14 +126,34 @@ class __$$StockModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? point = null,
+    Object? open = null,
+    Object? high = null,
+    Object? low = null,
+    Object? close = null,
+    Object? volume = null,
     Object? date = null,
   }) {
     return _then(_$StockModelImpl(
-      point: null == point
-          ? _value.point
-          : point // ignore: cast_nullable_to_non_nullable
+      open: null == open
+          ? _value.open
+          : open // ignore: cast_nullable_to_non_nullable
               as double,
+      high: null == high
+          ? _value.high
+          : high // ignore: cast_nullable_to_non_nullable
+              as double,
+      low: null == low
+          ? _value.low
+          : low // ignore: cast_nullable_to_non_nullable
+              as double,
+      close: null == close
+          ? _value.close
+          : close // ignore: cast_nullable_to_non_nullable
+              as double,
+      volume: null == volume
+          ? _value.volume
+          : volume // ignore: cast_nullable_to_non_nullable
+              as int,
       date: null == date
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
@@ -110,7 +166,12 @@ class __$$StockModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$StockModelImpl extends _StockModel {
   const _$StockModelImpl(
-      {this.point = 0, @DateTimeJsonConverter() required this.date})
+      {this.open = 0,
+      this.high = 0,
+      this.low = 0,
+      this.close = 0,
+      this.volume = 0,
+      @DateTimeJsonConverter() required this.date})
       : super._();
 
   factory _$StockModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -118,14 +179,26 @@ class _$StockModelImpl extends _StockModel {
 
   @override
   @JsonKey()
-  final double point;
+  final double open;
+  @override
+  @JsonKey()
+  final double high;
+  @override
+  @JsonKey()
+  final double low;
+  @override
+  @JsonKey()
+  final double close;
+  @override
+  @JsonKey()
+  final int volume;
   @override
   @DateTimeJsonConverter()
   final DateTime date;
 
   @override
   String toString() {
-    return 'StockModel(point: $point, date: $date)';
+    return 'StockModel(open: $open, high: $high, low: $low, close: $close, volume: $volume, date: $date)';
   }
 
   @override
@@ -133,13 +206,18 @@ class _$StockModelImpl extends _StockModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$StockModelImpl &&
-            (identical(other.point, point) || other.point == point) &&
+            (identical(other.open, open) || other.open == open) &&
+            (identical(other.high, high) || other.high == high) &&
+            (identical(other.low, low) || other.low == low) &&
+            (identical(other.close, close) || other.close == close) &&
+            (identical(other.volume, volume) || other.volume == volume) &&
             (identical(other.date, date) || other.date == date));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, point, date);
+  int get hashCode =>
+      Object.hash(runtimeType, open, high, low, close, volume, date);
 
   @JsonKey(ignore: true)
   @override
@@ -157,7 +235,11 @@ class _$StockModelImpl extends _StockModel {
 
 abstract class _StockModel extends StockModel {
   const factory _StockModel(
-          {final double point,
+          {final double open,
+          final double high,
+          final double low,
+          final double close,
+          final int volume,
           @DateTimeJsonConverter() required final DateTime date}) =
       _$StockModelImpl;
   const _StockModel._() : super._();
@@ -166,7 +248,15 @@ abstract class _StockModel extends StockModel {
       _$StockModelImpl.fromJson;
 
   @override
-  double get point;
+  double get open;
+  @override
+  double get high;
+  @override
+  double get low;
+  @override
+  double get close;
+  @override
+  int get volume;
   @override
   @DateTimeJsonConverter()
   DateTime get date;

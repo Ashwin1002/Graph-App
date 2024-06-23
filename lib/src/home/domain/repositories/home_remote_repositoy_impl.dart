@@ -13,7 +13,9 @@ class HomeRemoteRepositoryImpl extends HomeRemoteRepository {
   @override
   EitherFutureData<List<StockModel>> getStocks() async {
     // try {
-    var data = await rootBundle.loadString(AppConstants.nepseStockData);
+    var data = await rootBundle.loadString(
+      AppConstants.mockTeslaData,
+    );
     return right(
       await Isolate.run(
         () async {

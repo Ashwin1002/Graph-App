@@ -20,6 +20,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   void _subscribeToEvents() {
     on<FetchStocks>(_fetchStocks);
+    on<SetActiveDayType>(_setActiveDayType);
   }
 
   FutureOr<void> _fetchStocks(
@@ -39,8 +40,35 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         state.copyWith(
           status: LoadingStatus.success,
           stocks: List<StockModel>.from(state.stocks)..addAll(r),
+          filteredStocks: List<StockModel>.from(state.stocks)..addAll(r),
         ),
       ),
     );
+  }
+
+  void _setActiveDayType(SetActiveDayType event, Emitter<HomeState> emit) {
+    var startDate = event.dayType.getDays()?.start;
+    var endDate = event.dayType.getDays()?.end;
+
+    print('start date => $startDate');
+
+    print('end date => $endDate');
+
+    emit(
+      state.copyWith(
+        activeDayType: event.dayType,
+        filteredStocks: event.dayType.isMax
+            ? state.stocks
+            : List<StockModel>.from(state.stocks)
+                .where(
+                  (element) =>
+                      element.date.isAfter(startDate!) &&
+                      element.date.isBefore(endDate!),
+                )
+                .toList(),
+      ),
+    );
+
+    print('filtered stocks lenght => ${state.filteredStocks.length}');
   }
 }

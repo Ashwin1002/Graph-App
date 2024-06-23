@@ -53,14 +53,53 @@ class _HomeScreenViewState extends State<HomeScreenView> {
     return BlocBuilder<HomeBloc, HomeState>(
       buildWhen: (previous, current) =>
           previous.status != current.status ||
-          previous.stocks != current.stocks,
+          previous.stocks != current.stocks ||
+          previous.filteredStocks != current.filteredStocks,
       builder: (context, state) {
         return state.status.when(
           loading: () => const CustomLoadingWidget(),
-          success: () => StockLineChart(stocks: state.stocks),
+          success: () => _buildStockChartView(state),
           failure: () => CustomErrorWidget(message: state.message),
         );
       },
+    );
+  }
+
+  Widget _buildStockChartView(HomeState state) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const StockHeading(),
+        StockLineChart(
+          stocks: state.filteredStocks,
+        ),
+        BlocBuilder<HomeBloc, HomeState>(
+          buildWhen: (previous, current) =>
+              previous.activeDayType != current.activeDayType,
+          builder: (context, state) {
+            return Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16.h),
+              child: Wrap(
+                runSpacing: 8.v,
+                spacing: 8.h,
+                children: List.generate(
+                  DayType.values.length,
+                  (index) {
+                    var dayType = DayType.values[index];
+                    return CustomRadioCard(
+                      dayType: dayType,
+                      isActive: state.activeDayType == dayType,
+                      onTap: () {
+                        context.read<HomeBloc>().add(SetActiveDayType(dayType));
+                      },
+                    );
+                  },
+                ),
+              ),
+            );
+          },
+        ),
+      ],
     );
   }
 }

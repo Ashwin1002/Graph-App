@@ -13,3 +13,12 @@ class FetchStocks extends HomeEvent {
   @override
   List<Object?> get props => [];
 }
+
+class SetActiveDayType extends HomeEvent {
+  const SetActiveDayType(this.dayType);
+
+  final DayType dayType;
+
+  @override
+  List<Object?> get props => [dayType];
+}

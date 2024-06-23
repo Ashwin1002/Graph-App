@@ -8,7 +8,11 @@ part 'stock_model.g.dart';
 class StockModel with _$StockModel {
   const StockModel._();
   const factory StockModel({
-    @Default(0) double point,
+    @Default(0) double open,
+    @Default(0) double high,
+    @Default(0) double low,
+    @Default(0) double close,
+    @Default(0) int volume,
     @DateTimeJsonConverter() required DateTime date,
   }) = _StockModel;
 
