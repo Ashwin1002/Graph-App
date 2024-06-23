@@ -33,12 +33,3 @@ Stock market app is a UI representation of NEPSE mock data in line graph.
     <td><img src="https://github.com/Ashwin1002/Graph-App/assets/47735067/0f043add-84b5-4199-ac3a-8f522f4c27a6" width=270 height=550></td>
     <td><img src="https://github.com/Ashwin1002/Graph-App/assets/47735067/ddede180-8220-46ba-a217-c7d41617231c" width=270 height=550></td>
   </tr>
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
