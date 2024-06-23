@@ -1,10 +1,26 @@
-# stock_market
+# Stock Market APP
 
-A new Flutter project.
+Stock market app is a UI representation of NEPSE mock data in line graph. 
 
-## Getting Started
+## Key Features
 
-This project is a starting point for a Flutter application.
+- Animated Line Graph
+- Long press on index point to show a tooltip
+- Panning, zooming of graph
+- Filter graph according to minutes, hourly, daily, monthly or yearly data
+- Light and Dark Theme
+
+
+# Dependency Used:
+
+- dio (For fetching api)
+- flutter_bloc (for managing states)
+- hydrated_bloc (for persisting state)
+- easy_localization (for internationalizing app)
+- get_it, injectable (for dependency injection)
+- auto_route (for managing app routes)
+- freezed, json_serializable (for generating models)
+- syncfusion_flutter_charts (for creating line graphs)
 
 A few resources to get you started if this is your first Flutter project:
 
