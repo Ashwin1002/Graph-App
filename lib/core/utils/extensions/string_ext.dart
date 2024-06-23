@@ -101,6 +101,10 @@ extension StringExt on String {
     }
   }
 
+  ///custom date format
+  String formatDateTime({String format = 'yyyy-MM-dd'}) =>
+      DateFormat(format).format(DateTime.tryParse(trim()) ?? DateTime.now());
+
   /// convert to url
   String toUrl() {
     if (trim().contains('http://') || trim().contains('https://')) {
@@ -200,21 +204,6 @@ String timesAgo(DateTime dateTime) {
     return '${difference.inHours} hours ago';
   } else if (difference.inMinutes > 0) {
     return '${difference.inMinutes} minutes ago';
-  } else {
-    return 'Just now';
-  }
-}
-
-String timesAgoForComment(DateTime dateTime) {
-  final now = DateTime.now();
-  final difference = now.difference(dateTime);
-
-  if (difference.inDays > 0) {
-    return DateFormat('d MMM yyyy').format(dateTime);
-  } else if (difference.inHours > 0) {
-    return '${difference.inHours} hrs';
-  } else if (difference.inMinutes > 0) {
-    return '${difference.inMinutes} min';
   } else {
     return 'Just now';
   }

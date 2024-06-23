@@ -14,7 +14,7 @@ class AppColors {
   static const Color accentLight = Color(0xff27ABF1);
   static const Color warningLight = Color(0xffFFC043);
 
-  static const Color positiveLight = Color(0xff06A457);
+  static const Color positiveLight = Color(0xff4caf50);
   static const Color negativeLight = Color(0xffE11900);
 
   ///Background Light
@@ -51,7 +51,7 @@ class AppColors {
   static const Color accentDark = Color(0xff77C4F4);
   static const Color warningDark = Color(0xffF6DE6B);
 
-  static const Color positiveDark = Color(0xff65B891);
+  static const Color positiveDark = Color(0xff087f23);
   static const Color negativeDark = Color(0xffF47C95);
 
   ///Background Dark

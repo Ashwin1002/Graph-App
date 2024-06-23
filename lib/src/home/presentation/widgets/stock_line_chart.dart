@@ -7,22 +7,32 @@ class StockLineChart extends StatelessWidget {
   const StockLineChart({
     super.key,
     required this.stocks,
+    required this.stockType,
   });
 
+  final StockType stockType;
   final List<StockModel> stocks;
 
   @override
   Widget build(BuildContext context) {
+    var dateFormat =
+        stockType.isMinutes || stockType.isHours ? 'hh:mm a' : 'dd MMM, yyy';
     return Center(
       child: Stack(
         alignment: Alignment.center,
         children: [
           SizedBox(
-            height: 300.0,
+            height: context.deviceHeight / 2.5,
             child: SfCartesianChart(
-              onZooming: (zoomingArgs) {
-                print(zoomingArgs);
-              },
+              plotAreaBackgroundColor: AppColors.transparent,
+              zoomPanBehavior: ZoomPanBehavior(
+                enableDoubleTapZooming: true,
+                enablePanning: true,
+                enablePinching: true,
+              ),
+              borderColor: AppColors.transparent,
+              borderWidth: 0,
+              // enableAxisAnimation: true,
               primaryXAxis: const DateTimeAxis(
                 isVisible: false,
               ),
@@ -33,28 +43,55 @@ class StockLineChart extends StatelessWidget {
                 // print('${trackballArgs.chartPointInfo.chartPoint}');
               },
               trackballBehavior: TrackballBehavior(
-                  enable: true,
-                  activationMode: ActivationMode.singleTap,
-                  tooltipDisplayMode: TrackballDisplayMode.groupAllPoints,
-                  tooltipAlignment: ChartAlignment.near,
-                  tooltipSettings: InteractiveTooltip(
-                    canShowMarker: false,
-                    textStyle: context.textStyle.bodyMedium?.copyWith(
-                      color: context.theme.backgroundSecondary,
-                    ),
-                  )
-                  // builder: (context, trackballDetails) {
-                  //   return Container(
-                  //     width: 70,
-                  //     decoration: const BoxDecoration(
-                  //       color: Color.fromRGBO(66, 244, 164, 1),
-                  //     ),
-                  //     child: Text(
-                  //       '${trackballDetails.groupingModeInfo?.points.first.x}',
-                  //     ),
-                  //   );
-                  // },
+                enable: true,
+                activationMode: ActivationMode.singleTap,
+                tooltipDisplayMode: TrackballDisplayMode.groupAllPoints,
+                tooltipAlignment: ChartAlignment.near,
+                tooltipSettings: InteractiveTooltip(
+                  canShowMarker: false,
+                  arrowLength: 0,
+                  textStyle: context.textStyle.bodyMedium?.copyWith(
+                    color: context.theme.backgroundSecondary,
                   ),
+                ),
+                builder: (context, trackballDetails) {
+                  return Container(
+                    padding:
+                        EdgeInsets.symmetric(vertical: 4.v, horizontal: 10.h),
+                    decoration: CustomDecoration.containerDecoration(
+                      context,
+                      color: context.theme.backgroundSecondary,
+                      borderRadius: BorderRadius.all(AppScales.smallRadius),
+                    ),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          trackballDetails.groupingModeInfo?.points.last.y
+                                  .toString() ??
+                              '',
+                          style: context.textStyle.bodySmall?.copyWith(
+                            fontWeight: FontWeight.bold,
+                            color: context.theme.contentPrimary,
+                          ),
+                        ),
+                        Text(
+                          DateTime.parse(
+                            '${trackballDetails.groupingModeInfo?.points.last.x}',
+                          )
+                              .toString()
+                              .formatDateTime(format: dateFormat)
+                              .toUpperCase(),
+                          style: context.textStyle.bodyMedium?.copyWith(
+                            color: context.theme.contentPrimary,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              ),
               series: <CartesianSeries>[
                 // Renders line chart
                 LineSeries<StockModel, DateTime>(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:stock_market/core/core.dart';
 
 const Duration _duration = Duration(milliseconds: 350);
 const Curve _curve = Curves.easeInOut;
@@ -44,5 +45,18 @@ extension BuildContextExtension on BuildContext {
       return renderBox?.size;
     }
     return null;
+  }
+
+  Future<T?> openBottomSheet<T>({
+    required Widget child,
+    VoidCallback? onDragdownPressed,
+    bool? isDismissable,
+  }) {
+    return customModalBottomSheet(
+      this,
+      child: child,
+      onDragdownPressed: onDragdownPressed,
+      isDimissable: isDismissable,
+    );
   }
 }

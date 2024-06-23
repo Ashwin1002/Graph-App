@@ -30,6 +30,7 @@ class CustomRadioCard extends StatelessWidget {
           dayType.name,
           style: context.textStyle.bodySmall?.copyWith(
             fontWeight: FontWeight.bold,
+            color: context.theme.contentPrimary,
           ),
         ),
       ),

@@ -14,5 +14,6 @@
     "unknown_error": "Unknown Error Occurred",
     "already_present": "is already present",
     "error_decoding_message": "Error while decoding error message: {}",
-    "unauthorized_access": "User is not Authorized"
+    "unauthorized_access": "User is not Authorized",
+    "change_appearance": "Change Appearance"
 }

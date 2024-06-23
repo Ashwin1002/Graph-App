@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:stock_market/core/core.dart';
 
 class AppConfig {
@@ -15,7 +18,13 @@ class AppConfig {
 
       /// DI config
       configureInjection(),
+
+      /// Path provider Initialization
+      AppPathProvider.initPath(),
     ]);
+
+    HydratedBloc.storage = await HydratedStorage.build(
+        storageDirectory: Directory(AppPathProvider.path));
   }
 
   static EasyLocalization localize(Widget app) => EasyLocalization(

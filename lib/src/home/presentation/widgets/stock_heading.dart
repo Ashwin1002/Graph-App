@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:stock_market/core/core.dart';
 import 'package:stock_market/src/home/data/model/market/market_model.dart';
@@ -12,6 +13,8 @@ class StockHeading extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final formattedNepse =
+        NumberFormat('#,###').format(double.parse(market.todayNepse));
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 16.h),
       child: Row(
@@ -21,18 +24,20 @@ class StockHeading extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                market.todayNepse,
+                formattedNepse,
                 style: context.textStyle.headlineLarge?.copyWith(
                   fontWeight: FontWeight.bold,
                   letterSpacing: 1,
+                  color: context.theme.contentPrimary,
                 ),
               ),
               Row(
                 children: [
                   Text(
-                    '${market.percentChange} Ar',
+                    '2.1 Ar',
                     style: context.textStyle.bodyLarge?.copyWith(
                       fontWeight: FontWeight.bold,
+                      color: context.theme.contentPrimary,
                     ),
                   ),
                   8.h.horizontalSpace,
@@ -44,7 +49,7 @@ class StockHeading extends StatelessWidget {
                   ),
                   6.h.horizontalSpace,
                   Text(
-                    '${market.change} (0.29%)',
+                    '${market.change} (${market.percentChange}%)',
                     style: context.textStyle.bodyLarge?.copyWith(
                       fontWeight: FontWeight.bold,
                       color: context.theme.positive,
@@ -81,6 +86,7 @@ class StockHeading extends StatelessWidget {
                       'NEPSE',
                       style: context.textStyle.titleMedium?.copyWith(
                         fontWeight: FontWeight.bold,
+                        color: context.theme.contentPrimary,
                       ),
                     ),
                     5.h.horizontalSpace,
@@ -109,6 +115,7 @@ class StockHeading extends StatelessWidget {
                       style: context.textStyle.labelMedium?.copyWith(
                         fontWeight: FontWeight.bold,
                         letterSpacing: .48,
+                        color: context.theme.contentPrimary,
                       ),
                       text: 'Market ',
                       children: [
