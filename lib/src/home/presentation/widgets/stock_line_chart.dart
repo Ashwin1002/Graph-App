@@ -95,6 +95,7 @@ class StockLineChart extends StatelessWidget {
               series: <CartesianSeries>[
                 // Renders line chart
                 LineSeries<StockModel, DateTime>(
+                  animationDuration: 500,
                   dataSource: stocks,
                   xValueMapper: (StockModel data, _) => data.date,
                   yValueMapper: (StockModel data, _) => data.index,
