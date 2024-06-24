@@ -10,7 +10,7 @@ class DioClient {
               Duration(milliseconds: _config.connectionTimeout)
           ..options.receiveTimeout =
               Duration(milliseconds: _config.receiveTimeout)
-          ..options.baseUrl = const String.fromEnvironment('BASE_URL');
+          ..options.baseUrl = sl<EnvHelper>().get('BASE_URL');
 
   final Dio _dio;
 

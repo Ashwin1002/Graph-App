@@ -14,7 +14,7 @@ class HomeRemoteRepositoryImpl extends HomeRemoteRepository {
     try {
       var response = await sl<RemoteService>().getResponse(
         dio: Dio(),
-        endPoint: const String.fromEnvironment('API_KEY'),
+        endPoint: sl<EnvHelper>().get('API_KEY'),
       );
 
       return right(

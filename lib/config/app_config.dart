@@ -21,6 +21,9 @@ class AppConfig {
 
       /// Path provider Initialization
       AppPathProvider.initPath(),
+
+      /// Initialization of EnvHelper to load file from [.env]
+      EnvHelper.init(),
     ]);
 
     HydratedBloc.storage = await HydratedStorage.build(

@@ -6,21 +6,21 @@
         "request": "launch",
         "type": "dart",
         "program": "lib/main.dart",
-        "args": ["--dart-define-from-file=env.json"]
+        "args": []
       },
       {
         "name": "Stock Market (Release)",
         "request": "launch",
         "type": "dart",
         "program": "lib/main.dart",
-        "args": ["--release", "--dart-define-from-file=env.json"]
+        "args": ["--release" ]
       },
       {
         "name": "Stock Market (Profile)",
         "request": "launch",
         "type": "dart",
         "program": "lib/main.dart",
-        "args": ["--profile", "--dart-define-from-file=env.json"]
+        "args": ["--profile" ]
       },
     ],
     "compounds": []
